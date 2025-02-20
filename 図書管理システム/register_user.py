@@ -26,10 +26,10 @@ class Register(tk.Frame):
     
     self.entry_name = tk.Entry(self)
     self.entry_mail = tk.Entry(self)
-    self.entry_pw = tk.Entry(self, show='*')  # パスワードを隠す
-    self.entry_pw_con = tk.Entry(self, show='*')  # パスワードを隠す
+    self.entry_pw = tk.Entry(self, show='*') 
+    self.entry_pw_con = tk.Entry(self, show='*')  
 
-    # エントリーを配置（ラベルの横に配置）
+    
     self.entry_name.place(x=150, y=100)
     self.entry_mail.place(x=150, y=140)
     self.entry_pw.place(x=150, y=180)

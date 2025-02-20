@@ -176,3 +176,13 @@ def select_logs():
   cursor.close()
   connection.close()
   return logs
+
+def update_retun_date(lend_id):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'UPDATE lending SET return_date = NULL WHERE lend_id = %s'
+  cursor.execute(sql, (lend_id,))
+  connection.commit()
+  cursor.close()
+  connection.close()
+  

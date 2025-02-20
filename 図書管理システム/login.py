@@ -17,7 +17,7 @@ class Login(tk.Frame):
 
   def create_widgets(self):
     self.entry_mail = tk.Entry(self)
-    self.entry_pw = tk.Entry(self)
+    self.entry_pw = tk.Entry(self) 
     self.entry_mail.place(x=250, y=100)
     self.entry_pw.place(x=250, y=200)
     self.entry_mail.focus_set()

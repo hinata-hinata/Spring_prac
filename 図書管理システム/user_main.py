@@ -109,6 +109,7 @@ class User_main(tk.Frame):
     login.Login(self.master)
 
   def return_book(self):
+    messagebox.showinfo('返却', '返却しました。')
     selected_retun_id = self.treeview_2.selection()
     if len(selected_retun_id) == 1:
       selected_retun_data = self.treeview_2.item(selected_retun_id, option='values')
@@ -124,6 +125,20 @@ class User_main(tk.Frame):
         all_lending_books = db.all_lending_books()
         for lending_book in all_lending_books:
           self.treeview_2.insert('', index='end', values=lending_book)
+      
+      
+        # 再び借りれるようにreturn_dateをnullにする
+        # db.update_retun_date(selected_retun_data[0]) 
+         
+        #booksも更新
+        # for book in self.treeview.get_children():
+        #   self.treeview.delete(book)
+        
+        # books = db.select_books()
+        # for book in books:
+        #   self.treeview.insert('', index='end', values=book)
+        
+        
         
         #履歴作成
         lend_id = selected_retun_data[0]
@@ -134,7 +149,10 @@ class User_main(tk.Frame):
 
         log = db.select_log(book_id)
         self.treeview_3.insert('', index='end', values=log)
-          
+        
+        # 再び借りれるようにreturn_dateをnullにする
+        # db.update_retun_date(lend_id) 
+            
       else:
         messagebox.showerror('エラー', 'この本は返却済みです。')     
     
