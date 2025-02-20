@@ -121,9 +121,58 @@ def lending_books():
 def all_lending_books():
   connection = get_connection()
   cursor = connection.cursor()
-  sql = 'SELECT lend_id, book_name,author, lend_date, return_date FROM books JOIN lending ON books.book_id = lending.book_id'
+  sql = 'SELECT lend_id, book_name,author, lend_date, return_date FROM books JOIN lending ON books.book_id = lending.book_id WHERE return_date is NULL'
   cursor.execute(sql)
   lending_books = cursor.fetchall()
   cursor.close()
   connection.close()
   return lending_books
+
+def insert_log(user_id, book_id, lend_id, lend_date, return_date):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'INSERT INTO log (user_id, book_id, lend_id, lend_date, return_date) VALUES(%s, %s, %s, %s, %s)'
+  cursor.execute(sql, (user_id, book_id, lend_id, lend_date, return_date))
+  connection.commit()
+  cursor.close()
+  connection.close()
+
+def select_lending_2(lend_id):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'SELECT * FROM lending WHERE lend_id = %s'
+  cursor.execute(sql, (lend_id, ))
+  result = cursor.fetchone()
+  cursor.close()
+  connection.close()
+  return result
+
+def select_book_id(lend_id):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'SELECT book_id FROM lending WHERE lend_id = %s'
+  cursor.execute(sql, (lend_id,))
+  book_id = cursor.fetchone()
+  cursor.close()
+  connection.close()
+  return book_id
+
+def select_log(book_id):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'SELECT log_id, book_name, lend_date, return_date FROM log JOIN books ON log.book_id = books.book_id WHERE books.book_id = %s'
+  cursor.execute(sql, (book_id,))
+  log = cursor.fetchone()
+  cursor.close()
+  connection.close()
+  return log
+
+def select_logs():
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'SELECT log_id, book_name, lend_date, return_date FROM log JOIN books ON log.book_id = books.book_id'
+  cursor.execute(sql)
+  logs = cursor.fetchall()
+  cursor.close()
+  connection.close()
+  return logs
