@@ -2,6 +2,9 @@ import tkinter as tk
 import db
 import requests
 import pandas as pd
+from tkinter import messagebox
+from mail import send_mail, auth_code
+import auth
 
 class Register(tk.Frame):
   def __init__(self, master):
@@ -22,7 +25,7 @@ class Register(tk.Frame):
     self.label_pw_con = tk.Label(self, text='パスワード再入力')
     self.label_post = tk.Label(self, text='郵便番号')
     self.label_pri = tk.Label(self, text='県')
-    self.label_city = tk.Label(self, text='市')
+    self.label_city = tk.Label(self, text='市') 
     
     self.label_name.place(x=50, y=100)
     self.label_mail.place(x=50, y=140)
@@ -58,15 +61,23 @@ class Register(tk.Frame):
     self.radio_status = tk.IntVar()
     self.radio1 = tk.Radiobutton(self, text='管理者', variable=self.radio_status, value=0)
     self.radio2 = tk.Radiobutton(self, text='利用者', variable=self.radio_status, value=1)
-    self.radio1.place(x=150, y=300)
-    self.radio2.place(x=210, y=300)
+    self.radio1.place(x=150, y=260)
+    self.radio2.place(x=210, y=260)
 
     
     self.button = tk.Button(self, text='登録', command=self.register)
-    self.button.place(x=100, y=300)
+    self.button.place(x=300, y=330)
+    
+    self.button_return_login = tk.Button(self, text='戻る', command=self.return_login)
+    self.button_return_login.place(x=300, y=370)
     
     self.label_error = tk.Label(self, text='', fg='red')
-    self.label_error.place(x=80, y=290)
+    self.label_error.place(x=250, y=290)
+    
+  def return_login(self):
+    import login
+    self.destroy()
+    login.Login(self.master)
     
   def auto_post(self):
     post_num = self.entry_post.get() 
@@ -88,7 +99,6 @@ class Register(tk.Frame):
     return selected_data_1, selected_data_2
   
       
-    
   def register(self):
     name = self.entry_name.get() 
     mail = self.entry_mail.get()
@@ -110,12 +120,17 @@ class Register(tk.Frame):
     hashed_pw = db.get_hashed_pw(pw, salt)
     
     db.register_user(name, mail, hashed_pw, salt, role)
-    import login
+    
+    messagebox.showinfo('認証', '認証メールを送信しました。')
+    subject = '認証コード'
+    key = auth_code()
+    body = f'あなたの認証コードは{key}です。'
+    send_mail(mail, subject, body)
     self.destroy()
-    login.Login(self.master)
+    auth.Auth(self.master, key)
+   
 
 if __name__ == '__main__':
   root = tk.Tk()
   app = Register(master=root)
-  Register(master=root)
   app.mainloop()
