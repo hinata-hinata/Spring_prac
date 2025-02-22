@@ -24,14 +24,23 @@ CREATE TABLE lending(
   FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
 
+-- CREATE TABLE log(
+--   log_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+--   user_id INTEGER NOT NULL,
+--   book_id INTEGER NOT NULL,
+--   lend_id INTEGER NOT NULL,
+--   lend_date DATETIME NOT NULL,
+--   return_date DATETIME ,
+--   FOREIGN KEY (user_id) REFERENCES users(user_id),
+--   FOREIGN KEY (book_id) REFERENCES books(book_id),
+--   FOREIGN KEY (lend_id) REFERENCES lending(lend_id)
+-- );
+
 CREATE TABLE log(
   log_id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER NOT NULL,
   book_id INTEGER NOT NULL,
   lend_id INTEGER NOT NULL,
   lend_date DATETIME NOT NULL,
-  return_date DATETIME ,
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-  FOREIGN KEY (book_id) REFERENCES books(book_id),
-  FOREIGN KEY (lend_id) REFERENCES lending(lend_id)
+  return_date DATETIME
 );

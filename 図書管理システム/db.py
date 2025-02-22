@@ -186,3 +186,20 @@ def update_retun_date(lend_id):
   cursor.close()
   connection.close()
   
+def del_book(book_id):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'DELETE FROM books WHERE book_id = %s'
+  cursor.execute(sql, (book_id,))
+  connection.commit()
+  cursor.close()
+  connection.close()
+
+def del_lending_book(book_id):
+  connection = get_connection()
+  cursor = connection.cursor()
+  sql = 'DELETE FROM lending WHERE book_id = %s'
+  cursor.execute(sql, (book_id,))
+  connection.commit()
+  cursor.close()
+  connection.close()
