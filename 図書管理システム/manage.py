@@ -6,6 +6,7 @@ from tkinter import messagebox
 class Manage(tk.Frame):
   def __init__(self, master):
     super().__init__(master, width=600, height=600)
+    self.master = master
     self.pack()
 
     master.geometry('600x600')
@@ -56,6 +57,25 @@ class Manage(tk.Frame):
 
     self.button_add = tk.Button(self, text='追加', command=self.add_book)
     self.button_add.place(x=50, y=440)
+    
+    self.button_del = tk.Button(self, text='削除', command=self.del_book)
+    self.button_del.place(x=450, y=100)
+    
+    self.button_return = tk.Button(self, text='戻る', command=self.return_login)
+    self.button_return.place(x=450, y=400)
+    
+  def return_login(self):
+    import login
+    self.destroy()
+    login.Login(self.master)
+    
+  def del_book(self):
+    selected_row_id = self.treeview.selection()
+    selected_row_data = self.treeview.item(selected_row_id, option='values')
+    db.del_lending_book(selected_row_data[0])
+    db.del_book(selected_row_data[0])
+    self.treeview.delete(selected_row_id)
+    messagebox.showinfo('削除', '本を削除しました。')
     
   def add_book(self):
     title = self.entry_title.get()
