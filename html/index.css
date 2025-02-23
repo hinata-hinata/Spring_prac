@@ -1,41 +1,13 @@
-/* header, footer{
-  background-color: antiquewhite;
-} */
-
-header{
+#overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-}
-
-header ul{
-  display: flex;
-  list-style: none;
-}
-
-header ul li{
-  width: 25%;
-  text-align: center;
-}
-
-header ul li a{
-  color: #00552e;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-header ul li + li{
-  border-left: 2px solid #00552e;
-}
-
-.sea{
-  width: 100%;
-  height: 300px;
-}
-
-.section_1{
-  text-align: center;
-}
-
-.h1-sea{
-  text-decoration: underline;
-  text-decoration-color: #869b91;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;            /* 初めは非表示にする */
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
 }

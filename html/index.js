@@ -2,6 +2,12 @@
 
 const contain = document.getElementById('contain');
 let miss_type = 0;
+const overlay = document.getElementById('overlay');
+const closeoverlay = document.getElementById('closeoverlay');
+const reload = document.getElementById('reload');
+
+
+
 const normal = document.getElementById('normal');
 normal.addEventListener('click', function () {
   while (contain.firstChild) {
@@ -53,11 +59,26 @@ function game_main() {
   const inputarea = document.createElement('input');
   contain.appendChild(inputarea);
   inputarea.focus();
-  inputarea.setAttribute('id', 'inputId');
+  // inputarea.setAttribute('id', 'inputId');
   const miss_type_text = document.createElement('div');
   miss_type_text.textContent = `ミスタイプ数 : ${miss_type}`;
   contain.appendChild(miss_type_text);
 
+  const stopButton = document.createElement('button');
+  stopButton.textContent = '一時停止';
+  contain.appendChild(stopButton);
+
+  stopButton.addEventListener('click', function(){
+    overlay.style.display = 'flex';
+  })
+
+  closeoverlay.addEventListener('click', function(){
+    overlay.style.display = 'none';
+  })
+
+  reload.addEventListener('click', function(){
+    location.reload();
+  })
 
   let prevLength = 0;
   inputarea.addEventListener('input', function () {
