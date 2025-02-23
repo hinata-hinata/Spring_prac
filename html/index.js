@@ -1,6 +1,7 @@
 "use strict";
 
 const contain = document.getElementById('contain');
+let miss_type = 0;
 const normal = document.getElementById('normal');
 normal.addEventListener('click', function () {
   while (contain.firstChild) {
@@ -19,6 +20,8 @@ normal.addEventListener('click', function () {
 });
 
 function startCountdown() {
+  const message = contain.firstChild;
+  contain.removeChild(message);
   let count = 3;
   const countdown = document.createElement('div');
   contain.appendChild(countdown);
@@ -46,6 +49,32 @@ function game_main() {
   const spell = document.createElement('div');
   spell.textContent = random_spell;
   contain.appendChild(spell);
+
+  const inputarea = document.createElement('input');
+  contain.appendChild(inputarea);
+  inputarea.focus();
+  inputarea.setAttribute('id', 'inputId');
+  const miss_type_text = document.createElement('div');
+  miss_type_text.textContent = `ミスタイプ数 : ${miss_type}`;
+  contain.appendChild(miss_type_text);
+
+
+  let prevLength = 0;
+  inputarea.addEventListener('input', function () {
+    const s = inputarea.value;
+    for (let i = prevLength; i < s.length; i++) {
+      if (s[i] !== random_spell[i]) {
+        miss_type += 1;
+      }
+    }
+    prevLength = s.length;
+    miss_type_text.textContent = `ミスタイプ数 : ${miss_type}`;
+
+    if (s === random_spell){
+      game_main();
+    }
+  })
+
 }
 
 function randomspell() {
