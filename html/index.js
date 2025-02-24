@@ -16,6 +16,7 @@ normal.addEventListener('click', function () {
 
   const message = document.createElement('div');
   message.textContent = 'Press Enter Key';
+  message.classList.add('message_style');
   contain.appendChild(message);
 
   document.addEventListener('keydown', function (event) {
@@ -30,6 +31,7 @@ function startCountdown() {
   contain.removeChild(message);
   let count = 3;
   const countdown = document.createElement('div');
+  countdown.classList.add('countdown_style')
   contain.appendChild(countdown);
 
   function countdownStep() {
@@ -54,18 +56,21 @@ function game_main() {
   const random_spell = randomspell();
   const spell = document.createElement('div');
   spell.textContent = random_spell;
+  spell.classList.add('randomspell_style');
   contain.appendChild(spell);
 
   const inputarea = document.createElement('input');
+  inputarea.classList.add('inputarea_style');
   contain.appendChild(inputarea);
   inputarea.focus();
-  // inputarea.setAttribute('id', 'inputId');
   const miss_type_text = document.createElement('div');
   miss_type_text.textContent = `ミスタイプ数 : ${miss_type}`;
+  miss_type_text.classList.add('misstype_style');
   contain.appendChild(miss_type_text);
 
   const stopButton = document.createElement('button');
   stopButton.textContent = '一時停止';
+  stopButton.classList.add('stopbtn');
   contain.appendChild(stopButton);
 
   stopButton.addEventListener('click', function(){
