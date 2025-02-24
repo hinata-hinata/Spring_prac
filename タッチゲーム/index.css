@@ -1,0 +1,13 @@
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.item_style{
+  height: 90px;
+  font-size: 30px;
+}
+
+.clicked_btn{
+  background-color: black;
+}
