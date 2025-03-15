@@ -1,13 +1,39 @@
-.grid{
+.grid_easy{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.grid_normal{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .item_style{
   width: 100px;
   height: 120px;
+  margin: 25px;
 }
-
+ 
 .item_style_color{
   background-color: black;
+}
+
+#contain{
+  text-align: center;
+}
+
+#easy{
+  margin-top: 50px;
+  width: 130px;
+  height: 60px;
+  background-color: rgb(226, 251, 2);
+  margin-right: 20px;
+}
+
+#normal{
+  margin-top: 50px;
+  width: 130px;
+  height: 60px;
+  background-color: rgb(235, 91, 108);
+  margin-left: 20px;
 }
