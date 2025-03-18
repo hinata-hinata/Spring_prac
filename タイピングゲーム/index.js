@@ -8,23 +8,8 @@ const reload = document.getElementById('reload');
 const normal = document.getElementById('normal');
 const easy = document.getElementById('easy');
 const diff = document.getElementById('diff');
+// const audio = new Audio('C:/Users/Hinata/Desktop/春休み課題/Spring_prac/タイピングゲーム/maou_se_system18 (1).mp3');
 let judge;
-// normal.addEventListener('click', function () {
-//   while (contain.firstChild) {
-//     contain.removeChild(contain.firstChild);
-//   }
-
-//   const message = document.createElement('div');
-//   message.textContent = 'Press Enter Key';
-//   message.classList.add('message_style');
-//   contain.appendChild(message);
-
-//   document.addEventListener('keydown', function (event) {
-//     if (event.key === 'Enter') {
-//       startCountdown();
-//     }
-//   })
-// });
 
 normal.addEventListener('click', function () {
   judge = 1;
@@ -40,7 +25,6 @@ diff.addEventListener('click', function () {
   judge = 2;
   start()
 });
-
 
 function start() {
   while (contain.firstChild) {
@@ -90,7 +74,6 @@ function game_main() {
   switch (judge) {
     case 1:
       random_spell = randomspell_1();
-      console.log(random_spell);
       break;
     case 0:
       random_spell = randomspell_0();
@@ -99,7 +82,7 @@ function game_main() {
       random_spell = randomspell_2();
       break;
   }
-  // const random_spell = randomspell();
+
   const spell = document.createElement('div');
   spell.textContent = random_spell;
   spell.classList.add('randomspell_style');
@@ -137,6 +120,7 @@ function game_main() {
     for (let i = prevLength; i < s.length; i++) {
       if (s[i] !== random_spell[i]) {
         miss_type += 1;
+        // audio.play();
       }
     }
     prevLength = s.length;
@@ -147,7 +131,6 @@ function game_main() {
 
     }
   })
-
 }
 
 function randomspell_1() {
