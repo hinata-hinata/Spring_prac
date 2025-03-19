@@ -1,0 +1,23 @@
+.gu-:hover {
+  opacity: 0.3;
+}
+
+.tyoki:hover {
+  opacity: 0.3;
+}
+
+.pa-:hover {
+  opacity: 0.3;
+}
+
+#container{
+  display: flex;
+}
+
+#you{
+  width: 800px;
+}
+
+#judge{
+  text-align: center;
+}
