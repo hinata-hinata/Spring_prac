@@ -84,4 +84,3 @@ function judge() {
 
 function reload(){
   location.reload();
-}
