@@ -21,9 +21,6 @@ class Auth(tk.Frame):
     self.entry = tk.Entry(self)
     self.entry.place(x=145, y=50)
     
-    self.entry_2 = tk.Entry(self)
-    self.entry_2.place(x=145, y=50)
-    
     self.button = tk.Button(self, text='決定', command=self.key_check)
     self.button.place(x=190, y=100)
     
